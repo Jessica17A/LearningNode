@@ -6,6 +6,7 @@
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
+    "preview": "vite preview",
     "start": "sirv public --no-clear"
   },
   "devDependencies": {
@@ -19,6 +20,8 @@
     "svelte": "^3.55.0"
   },
   "dependencies": {
-    "sirv-cli": "^2.0.0"
+    "cors": "^2.8.5",
+    "sirv-cli": "^2.0.0",
+    "svelte-routing": "^2.13.0"
   }
 }

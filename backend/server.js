@@ -1,29 +1,24 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const cors = require('cors');  // Importa CORS
-const productController = require('./controllers/productController');
+const cors = require('cors');
 
 const app = express();
-const port = 5000;
 
-// **Habilitar CORS**
+// Middleware
 app.use(cors());
+app.use(express.json());
 
-app.use(express.json()); // Habilita JSON
+// Conectar a MongoDB
+mongoose.connect('mongodb://127.0.0.1:27017/tienda', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+}).then(() => console.log('Conectado a MongoDB'))
+  .catch(err => console.error('Error de conexión:', err));
 
 // Rutas
-app.get('/productos', productController.getProductos);
-app.get('/productos/:id', productController.getProductoById);
-app.post('/productos', productController.createProducto);
-app.put('/productos/:id', productController.updateProducto);
-app.delete('/productos/:id', productController.deleteProducto);
+const productosRoutes = require('./routes/productos');
+app.use('/api/productos', productosRoutes);
 
-// Conexión a MongoDB y arranque del servidor
-mongoose.connect('mongodb://localhost:27017/productosDB')
-.then(() => {
-    app.listen(port, () => {
-        console.log(`Servidor corriendo en http://localhost:${port}`);
-    });
-}).catch(err => {
-    console.error('Error de conexión a MongoDB:', err);
-});
+// Iniciar servidor
+const PORT = 5000;
+app.listen(PORT, () => console.log(`Servidor corriendo en http://localhost:${PORT}`));
