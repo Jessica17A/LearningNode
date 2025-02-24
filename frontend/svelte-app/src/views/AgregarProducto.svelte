@@ -1,7 +1,10 @@
 <script>
+
+    
   let nombre = '';
   let precio = '';
   let descripcion = '';
+
 
   async function agregarProducto() {
       const nuevoProducto = { nombre, precio: Number(precio), descripcion };
@@ -15,9 +18,9 @@
       if (res.ok) {
           const data = await res.json();
           alert(data.message);
-          window.location.href = '/'; // 🔴 Redirige a Home después de agregar el producto
+          window.location.href = '/'; 
       } else {
-          alert("❌ Error al agregar el producto");
+          alert("Error al agregar el producto");
       }
   }
 </script>
@@ -25,14 +28,14 @@
 <main>
   <h1>Agregar Producto</h1>
   <form on:submit|preventDefault={agregarProducto}>
-      <label>Nombre</label>
-      <input type="text" bind:value={nombre} required>
+      <label for="nombre">Nombre</label>
+      <input id="nombre" type="text" bind:value={nombre} required>
 
-      <label>Precio</label>
-      <input type="number" bind:value={precio} required>
+      <label for="precio">Precio</label>
+      <input id="precio" type="number" bind:value={precio} required>
 
-      <label>Descripción</label>
-      <input type="text" bind:value={descripcion} required>
+      <label for="descripcion">Descripción</label>
+      <input id="descripcion" type="text" bind:value={descripcion} required>
 
       <button type="submit">Agregar</button>
   </form>
