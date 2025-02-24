@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "build": "rollup -c",
+    
     "dev": "rollup -c -w",
     "preview": "vite preview",
     "start": "sirv public --no-clear"

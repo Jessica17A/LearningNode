@@ -14,7 +14,7 @@
 
 <main>
     <h1>Bienvenido a la Tienda</h1>
-    <Link to="/agregar">
+    <Link to="/agregarProducto">
         <button>Agregar Producto</button>
     </Link>
 
